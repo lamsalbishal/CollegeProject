@@ -229,7 +229,7 @@ export default class Review extends Component {
         this.setState({
                 showIndicator:true
             })
-
+        
         if(!this.state.feedbackText == '')
         { 
             if(!this.state.useremail == '' && this.state.emailValidation)
@@ -250,6 +250,8 @@ export default class Review extends Component {
 
         }else
         {
+            
+
             ToastAndroid.showWithGravityAndOffset(
                 'Feedback Error',
                 ToastAndroid.LONG,
@@ -338,7 +340,7 @@ export default class Review extends Component {
                         }
                     </View>
 
-                    <View style={{paddingTop:20}}>
+                    <View style={{paddingTop:20}} >
                         <TouchableOpacity onPress={() => {this.props.navigation.goBack()}}>
                                 <View >
                                     <Text style={{color:'#fff',fontSize:18,fontWeight:'bold',backgroundColor:'#f2091d',textAlign:'center',padding:15,borderRadius:50}}>Cancel</Text>

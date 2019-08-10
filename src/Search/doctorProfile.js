@@ -168,7 +168,7 @@ export default class DoctorProfile extends Component{
                         </View>
                         <View style={{paddingLeft:5}}>
                             <Text  style={{fontSize:14,fontWeight:'bold',color:'#000'}}>Degree</Text>
-                            <Text >{this.props.navigation.getParam("Experience")}</Text>
+                            <Text >{this.props.navigation.getParam("degree")}</Text>
                         </View>
                     </View>
 

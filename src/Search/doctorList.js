@@ -100,6 +100,7 @@ export default class DoctorList extends Component{
                                 Sex:item.Doctor_Sex,
                                 Working:item.Hospital_Name,
                                 Phone:item.Doctor_Phone,
+                                degree:item.Doctor_Degree
 
 
                             })}>
