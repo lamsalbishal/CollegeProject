@@ -12,7 +12,6 @@ import {
    Text, 
    StatusBar,
    View,
-   TextInput,
    Image,
    RefreshControl,
    TouchableOpacity,
@@ -48,8 +47,14 @@ export default class Home extends Component {
     componentDidMount(){
       this.makeRemoteRequest();
       this.getDoctorApi();
-     
+      this.interval = setInterval(()=>{
+        this._onAutomaticRefresh();
+      },5000)
    }
+
+   componentWillUnmount() {
+    clearInterval(this.interval);
+  }
     
 
   
@@ -89,8 +94,14 @@ export default class Home extends Component {
 
     _onRefresh() {
       this.setState({refreshing: true,},
-        this.makeRemoteRequest())
+        this.makeRemoteRequest)
+        this.getDoctorApi()
     
+    }
+
+    _onAutomaticRefresh(){
+      this.makeRemoteRequest
+        this.getDoctorApi()
     }
     
    
@@ -304,7 +315,7 @@ export default class Home extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#E8EAEE',
+    // backgroundColor: '#E8EAEE',
     paddingTop:30,
     backgroundColor:'rgba(0,0,0,0.7)'
   },
