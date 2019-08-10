@@ -72,7 +72,7 @@ export default class DoctorProfile extends Component{
                     source={{uri:this.props.navigation.getParam('Image')}}
                 ></Image>
                 <Text style={{paddingTop:5,marginLeft:-20,textAlign:'center',fontWeight:'bold',color:'#fff',paddingLeft:20}}>{this.props.navigation.getParam("Name")}</Text>
-                <Text style={{paddingTop:2,marginLeft:-20,textAlign:'center',paddingLeft:20,color:'#fff',paddingLeft:20}}>{this.props.navigation.getParam("Phone")}</Text>
+                <Text style={{paddingTop:2,marginLeft:-20,textAlign:'center',paddingLeft:20,color:'#fff'}}>{this.props.navigation.getParam("Phone")}</Text>
             </View>
         )
     }
