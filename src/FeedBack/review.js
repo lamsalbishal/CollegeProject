@@ -13,6 +13,8 @@ import {
     ToastAndroid
 } from 'react-native';
 
+import ToastMessage from '../Components/ToastMessage'
+
 import Icon from 'react-native-vector-icons/Entypo';
 
 const sadoff = <Icon name="emoji-sad" size={40} color="grey"/>
@@ -47,6 +49,8 @@ export default class Review extends Component {
                     feedbackError:false,
                     emailError:false,
                     submitApiHit:false,
+                    messageVisibility:false,
+                    toastMessage:''
 
 
                         
@@ -54,6 +58,13 @@ export default class Review extends Component {
                 }
     }
 
+    showToastMessage=(message)=>{
+        this.setState({messageVisibility:true,toastMessage:message},() => {
+          setTimeout(() => {
+            this.setState({messageVisibility:false})
+          },2000);
+        })
+      }
 
     static navigationOptions = ({ navigation }) => {
         return {
@@ -201,7 +212,7 @@ export default class Review extends Component {
                 response => {
                     
                 
-                    ToastAndroid.show('Success full', ToastAndroid.SHORT);
+                    ToastAndroid.show('Doctor Reviewed Succesfully', ToastAndroid.SHORT);
                     
                 }
                 // showMe=>false
@@ -229,38 +240,31 @@ export default class Review extends Component {
         this.setState({
                 showIndicator:true
             })
-
-        if(!this.state.feedbackText == '')
-        { 
-            if(!this.state.useremail == '' && this.state.emailValidation)
-            {
-              this.setState({
-                  submitApiHit:true
-              })
-               this.onFeedbackClick()
-            }else{
-                ToastAndroid.showWithGravityAndOffset(
-                    'Email Error',
-                    ToastAndroid.LONG,
-                    ToastAndroid.BOTTOM,
-                    25,
-                    50,
-                  );
+        if(this.state.feedbackText=='' && this.state.useremail==''){
+            this.setState({showIndicator:false})
+            this.showToastMessage('Please Input All Details')
+        } else if (this.state.feedbackText=='' && this.state.useremail!='') {
+            this.setState({showIndicator:false})
+            this.showToastMessage('Please Input Feedback Details')
+        }
+        else if(this.state.feedbackText!=''&& this.state.useremail==''){
+            this.setState({showIndicator:false})
+            this.showToastMessage('Please Input Your Email Address')
+        } 
+        else {
+            if(this.state.emailValidation){
+                this.setState({
+                    submitApiHit:true
+                })
+                this.onFeedbackClick()
+                this.setState({showIndicator:false})
             }
-
-        }else
-        {
-            ToastAndroid.showWithGravityAndOffset(
-                'Feedback Error',
-                ToastAndroid.LONG,
-                ToastAndroid.BOTTOM,
-                25,
-                50,
-              );
+            else {
+                this.setState({showIndicator:false})
+                this.showToastMessage('Invalid Email Address')
+            } 
         }
     }
-
-
 
     header()
     {
@@ -273,7 +277,7 @@ export default class Review extends Component {
                         Send us your Feedback! 
                     </Text>
                     <Text style={{color:'#fff',paddingTop:10}}>
-                        Do you have a suggestion or found some bug?
+                        How was your experience with {this.props.navigation.getParam('doctorName')}?
                     </Text>
                     <Text style={{color:'#fff',paddingTop:1}}>
                         let us know in the field below.
@@ -282,7 +286,7 @@ export default class Review extends Component {
 
                 <View style={{padding:20}}>
 
-                  <Text style={{fontSize:18,color:'#000',}}>How was your experiance?</Text>
+                  <Text style={{fontSize:18,color:'#000',}}>Your Experience</Text>
                   
                   <View style={{flexDirection:'row',padding:10}}>
                       <View>
@@ -355,8 +359,13 @@ export default class Review extends Component {
     render()
     {
         return(
+            
             <View style={{flex:1}}>
                 {this.header()}
+                <ToastMessage
+                 modalVisible={this.state.messageVisibility}
+                 toastMessage={this.state.toastMessage}
+                />
             </View>
         )
     }

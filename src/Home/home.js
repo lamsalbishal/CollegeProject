@@ -47,13 +47,13 @@ export default class Home extends Component {
     componentDidMount(){
       this.makeRemoteRequest();
       this.getDoctorApi();
-      this.interval = setInterval(()=>{
-        this._onRefresh();
-      },5000)
+      // this.interval = setInterval(()=>{
+      //   this._onRefresh();
+      // },7000)
    }
 
    componentWillUnmount() {
-    clearInterval(this.interval);
+    // clearInterval(this.interval);
   }
     
 
@@ -78,9 +78,6 @@ export default class Home extends Component {
           this.setState({
             doctorApi: dataarray.filter((item,index) => dataarray.indexOf(item) === index)
           });
-
-      
-        
 
           })
           .catch((error) => {
@@ -296,7 +293,8 @@ export default class Home extends Component {
               refreshControl ={
                 <RefreshControl
                 refreshing = {this.state.refreshing}
-                onRefresh={()=>this._onRefresh()}/>
+                onRefresh={()=>this._onRefresh()}
+                />
               }
               style={styles.container}>
                 <StatusBar hidden/>
