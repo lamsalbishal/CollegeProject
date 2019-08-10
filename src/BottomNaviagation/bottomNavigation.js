@@ -35,16 +35,17 @@ const TabNavigator = createBottomTabNavigator({
   Home:
   {screen: HomePage,
     navigationOptions: () => ({
-      tabBarIcon: () => (
+      tabBarIcon: ({tintColor}) => (
         
-        <Entypo name="home" size={20} color="#fff"/>
+        <Entypo name="home" size={20} color={tintColor}/>
       )
   })},
  
   Search:{screen: SearchPage,
     navigationOptions: () => ({
-      tabBarIcon: () => (
-        <Icon name="search" size={20} color="#fff"/>
+      
+      tabBarIcon: ({tintColor}) => (
+        <Icon name="search" size={20} color={tintColor} />
       )
   })
   },
@@ -52,12 +53,20 @@ const TabNavigator = createBottomTabNavigator({
 
 },{
   tabBarOptions : {
-    activeTintColor: '#fff',
-    inactiveTintColor: 'gray',
+    activeTintColor: '#FCF301',
+    inactiveTintColor: '#fff',
+    indicatorStyle: {
+      borderBottomColor: '#87B56A',
+      borderBottomWidth: 2,
+    },
+    barStyle: {
+      borderBottomWidth:2,
+       backgroundColor: '#000'
+       },
+   
     style: {
-     
-      backgroundColor: 'rgb(0,0,0)',
-    }
+      backgroundColor: '#E05484',
+    },
   }
 }
 );
