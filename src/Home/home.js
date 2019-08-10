@@ -47,7 +47,7 @@ export default class Home extends Component {
       this.makeRemoteRequest();
       this.getDoctorApi();
       this.interval = setInterval(()=>{
-        this._onAutomaticRefresh();
+        this._onRefresh();
       },5000)
    }
 
@@ -84,10 +84,6 @@ export default class Home extends Component {
     
     }
 
-    _onAutomaticRefresh(){
-      this.makeRemoteRequest
-        this.getDoctorApi()
-    }
     
    
 
