@@ -17,7 +17,7 @@ import {
    RefreshControl,
    TouchableOpacity,
    ScrollView,
-   FlatList
+   FlatList,
   } from 'react-native';
 
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
@@ -38,6 +38,7 @@ export default class Home extends Component {
         getDoctorList:'',
         refreshing: false,
         startArray : [],
+        doctorApi:[]
        
       }
     }
@@ -50,11 +51,12 @@ export default class Home extends Component {
      
    }
     
-  
+
   
     //fetch the api 
     makeRemoteRequest = () => {
-      fetch("http://manojphuyal-001-site1.atempurl.com/api/GetDoctorComment")
+     // http://manojphuyal-001-site1.atempurl.com/api/GetDoctorComment
+      fetch("http://manojphuyal-001-site1.atempurl.com/api/GetDoctorCommentSingle")
           .then((response) => response.json())
           .then((responseJson) => {
           
@@ -62,6 +64,19 @@ export default class Home extends Component {
               doctorDetailList:responseJson,
               refreshing:false,
           })
+ 
+         const dataarray = [];
+          responseJson.map((item) => {
+            dataarray.push(item.Doctor_ID)
+          })
+
+          this.setState({
+            doctorApi: dataarray.filter((item,index) => dataarray.indexOf(item) === index)
+          });
+
+      
+        
+
           })
           .catch((error) => {
           this.setState({
@@ -91,8 +106,8 @@ export default class Home extends Component {
               getDoctorList:responseJson,
               refreshing:false,
           })
-          console.log('get fetch data', responseJson)
           
+
           })
           .catch((error) => {
           this.setState({
@@ -175,15 +190,36 @@ export default class Home extends Component {
       </View>
     );
 
+    // checkDoctorList(doctorid)
+    // {
+      
+    //     this.state.doctorApi.map((item) => {
+    //     if(item != doctorid)
+    //     {
+    //       this.state.doctorApi.push(doctorid);
+    //     }
+    //     })
+    //     { console.log("viewdata",this.state.doctorApi)}
+      
+    // }
+
     //flatlist function for the renderView
-    _renderItem = ({item}) => (
+    _renderItem = ({item}) => {
+     
+      return(
       <View style={styles.renderContainer}>
+
+        {/* {this.checkDoctorList(item.Doctor_ID)} */}
+
+        
 
         <TouchableOpacity onPress={()=> this.props.navigation.navigate("Feedback",{
           doctorId:item.Doctor_ID,
           doctorImage:item.Doctor_Image_URL,
           doctorName:item.Doctor_Name,
         })}>
+
+         
          
           <View style={{flexDirection:'row',elevation:5,paddingTop:20,paddingLeft:10,paddingBottom:20,backgroundColor:'#302F2F'}}>
 
@@ -215,7 +251,8 @@ export default class Home extends Component {
 
         </TouchableOpacity>   
       </View>
-    );
+    
+      )};
 
     body()
     {

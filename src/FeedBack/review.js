@@ -39,6 +39,8 @@ export default class Review extends Component {
                     errorText:false,
                     showIndicator:false,
 
+                    scroll:false,
+                    
                     feedbackResult:'',
                     feedbackValidate:false,
                     emailValidation:false,
@@ -297,12 +299,15 @@ export default class Review extends Component {
                       
                   </View>
          
-
+                   
                     <TextInput
                             style={{height: 80,backgroundColor:'#E8EAEE',marginTop:20,padding:10}}
                             onChangeText={(text) => this.feedBackForm(text,'feedbackText')}
                             placeholder="Feedback ..."
                             returnKeyType = {"next"}
+                            onFocus={() => this.setState({
+                                scroll:true
+                            })}
                             multiline={true}
                             autoFocus = {true}
                             onSubmitEditing={() => {this.firstTextInput.focus(); }}
@@ -325,6 +330,7 @@ export default class Review extends Component {
                         :
 
                         <TouchableOpacity onPress={() => {this.feedbackSubmit()}}>
+                            
                                 <View >
                                     <Text style={{color:'#fff',fontSize:18,fontWeight:'bold',backgroundColor:'#E05484',textAlign:'center',padding:15,borderRadius:50}}>Submit</Text>
                                 </View>
@@ -349,9 +355,9 @@ export default class Review extends Component {
     render()
     {
         return(
-            <ScrollView style={{flex:1}}>
+            <View style={{flex:1}}>
                 {this.header()}
-            </ScrollView>
+            </View>
         )
     }
 }
