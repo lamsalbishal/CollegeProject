@@ -237,9 +237,9 @@ export default class Home extends Component {
 
             <View style={{width:'45%',justifyContent:'center'}}>
 
-              <Text style={{color:'#fff',fontSize:16,fontWeight:'bold'}} numberOfLines={1} >{item.Doctor_Name.toString().length < 20?item.Doctor_Name:item.Doctor_Name.toString().substring(0,20) + "..."}</Text>
-              <Text style={{color:'#FCF301',fontSize:16,fontWeight:'bold',paddingTop:5,}} numberOfLines={1} >View comments</Text>
-              <Text style={{height:1,backgroundColor:'#fff',width:"75%"}}></Text>
+              <Text style={{color:'#fff',fontSize:14,fontWeight:'bold',paddingTop:5,letterSpacing:0.5}} numberOfLines={1} >REVIEWS FOR: </Text>
+              <Text style={{color:'#fff',fontSize:16,fontWeight:'500',fontStyle:'italic'}} numberOfLines={1} >{item.Doctor_Name.toString().length < 20?item.Doctor_Name:item.Doctor_Name.toString().substring(0,20) + "..."}</Text>
+              {/* <Text style={{height:1,backgroundColor:'#fff',width:"75%"}}></Text> */}
                  
             </View>
 
