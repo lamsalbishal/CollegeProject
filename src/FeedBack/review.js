@@ -343,12 +343,7 @@ export default class Review extends Component {
                                 </View>
                             </TouchableOpacity>
                     </View>
-                    <View>
-                    <Text>  Note: In order for Google Play to accept AAB format the App Signing by Google Play needs to be configured for your application on the Google Play Console. If you are updating an existing app that doesn't use App Signing by Google Play, please check our migration section to learn how to perform that configuration change.
-                    Note: In order for Google Play to accept AAB format the App Signing by Google Play needs to be configured for your application on the Google Play Console. If you are updating an existing app that doesn't use App Signing by Google Play, please check our migration section to learn how to perform that configuration change.
-                    Note: In order for Google Play to accept AAB format the App Signing by Google Play needs to be configured for your application on the Google Play Console. If you are updating an existing app that doesn't use App Signing by Google Play, please check our migration section to learn how to perform that configuration change.
-                    </Text>
-                    </View>
+                    
                 </View>
  
                
