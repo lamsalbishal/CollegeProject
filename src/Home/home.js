@@ -37,27 +37,23 @@ export default class Home extends Component {
         getDoctorList:'',
         refreshing: false,
         startArray : [],
-        doctorApi:[]
+        doctorApi:[],
        
       }
     }
-      
-    //calling the search function 
     
-    componentDidMount(){
+     componentDidMount(){
       this.makeRemoteRequest();
       this.getDoctorApi();
-      // this.interval = setInterval(()=>{
-      //   this._onRefresh();
-      // },7000)
+      this.interval = setInterval(()=>{
+        this._onRefresh();
+      },7000)
    }
 
    componentWillUnmount() {
-    // clearInterval(this.interval);
-  }
-    
+    clearInterval(this.interval);
+  }    
 
-  
     //fetch the api 
     makeRemoteRequest = () => {
      // http://manojphuyal-001-site1.atempurl.com/api/GetDoctorComment
@@ -237,7 +233,7 @@ export default class Home extends Component {
 
             <View style={{width:'45%',justifyContent:'center'}}>
 
-              <Text style={{color:'#fff',fontSize:14,fontWeight:'bold',paddingTop:5,letterSpacing:0.5}} numberOfLines={1} >REVIEWS FOR: </Text>
+              <Text style={{color:'#fff',fontSize:14,fontWeight:'bold',paddingTop:5,letterSpacing:0.5}} numberOfLines={1} >REVIEWS FOR:{this.state.toRefresh} </Text>
               <Text style={{color:'#fff',fontSize:16,fontWeight:'500',fontStyle:'italic'}} numberOfLines={1} >{item.Doctor_Name.toString().length < 20?item.Doctor_Name:item.Doctor_Name.toString().substring(0,20) + "..."}</Text>
               {/* <Text style={{height:1,backgroundColor:'#fff',width:"75%"}}></Text> */}
                  

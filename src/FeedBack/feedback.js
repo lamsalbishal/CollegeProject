@@ -7,6 +7,7 @@ import {
      TextInput,
      TouchableOpacity,
      Share,
+     KeyboardAvoidingView,
      Image,
      FlatList,
      RefreshControl
@@ -143,10 +144,12 @@ export default class Feedback extends Component {
    
     render(){
         return(
+            <KeyboardAvoidingView behavior="padding">
             <ScrollView style={{backgroundColor:"rgba(0, 0, 0, 0.7)"}} >
                 {this.header()}
                 {this.body()}
             </ScrollView>
+            </KeyboardAvoidingView>
         )
     }
     
@@ -156,7 +159,7 @@ export default class Feedback extends Component {
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: '#E8EAEE',
+    //   backgroundColor: '#E8EAEE',
       paddingTop:30,
       backgroundColor:'rgba(0,0,0,0.7)'
     },

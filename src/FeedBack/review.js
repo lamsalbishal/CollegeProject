@@ -1,15 +1,12 @@
 import React, {Component} from 'react';
 import {
-    StyleSheet,
     Text,
     View,
-    FlatList,
     ActivityIndicator,
     ScrollView,
-    Dimensions,
     TouchableOpacity,
     TextInput,
-    Image,
+    KeyboardAvoidingView,
     ToastAndroid
 } from 'react-native';
 
@@ -270,8 +267,7 @@ export default class Review extends Component {
     {
         return(
             <ScrollView style={{flex:1}}>
-               
-
+                <KeyboardAvoidingView behavior='padding'>
                 <View style={{backgroundColor:'rgba(0, 0, 0, 0.7)',paddingTop:40,paddingLeft:20,paddingBottom:40,paddingRight:20}}>
                     <Text style={{fontSize:20,fontWeight:'bold',color:'#fff'}}>
                         Send us your Feedback! 
@@ -308,12 +304,12 @@ export default class Review extends Component {
                             style={{height: 80,backgroundColor:'#E8EAEE',marginTop:20,padding:10}}
                             onChangeText={(text) => this.feedBackForm(text,'feedbackText')}
                             placeholder="Feedback ..."
-                            returnKeyType = {"next"}
+                            returnKeyType = {'next'}
                             onFocus={() => this.setState({
                                 scroll:true
                             })}
                             multiline={true}
-                            autoFocus = {true}
+                            autoFocus = {false}
                             onSubmitEditing={() => {this.firstTextInput.focus(); }}
                            
                         />
@@ -343,15 +339,15 @@ export default class Review extends Component {
                     </View>
 
                     <View style={{paddingTop:20}} >
-                        <TouchableOpacity onPress={() => {this.props.navigation.goBack()}}>
+                        <TouchableOpacity onPress={() => {this.props.navigation.goback()}}>
                                 <View >
                                     <Text style={{color:'#fff',fontSize:18,fontWeight:'bold',backgroundColor:'#f2091d',textAlign:'center',padding:15,borderRadius:50}}>Cancel</Text>
                                 </View>
                             </TouchableOpacity>
                     </View>
                 </View>
- 
-               
+            
+                </KeyboardAvoidingView>   
             </ScrollView>
         )
     }
@@ -359,13 +355,14 @@ export default class Review extends Component {
     render()
     {
         return(
-            
             <View style={{flex:1}}>
+                {/* <KeyboardAvoidingView behavior='padding'> */}
                 {this.header()}
                 <ToastMessage
                  modalVisible={this.state.messageVisibility}
                  toastMessage={this.state.toastMessage}
                 />
+                {/* </KeyboardAvoidingView> */}
             </View>
         )
     }
