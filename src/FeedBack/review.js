@@ -50,11 +50,7 @@ export default class Review extends Component {
                     emailError:false,
                     submitApiHit:false,
                     messageVisibility:false,
-                    toastMessage:''
-
-
-                        
-                       
+                    toastMessage:''       
                 }
     }
 
@@ -185,10 +181,6 @@ export default class Review extends Component {
 
      //feedback post 
          allDataPOST(x){
-            
-           
-                 
-
             let collection ={}
 
             collection.Doctor_Classification= x,
@@ -240,18 +232,10 @@ export default class Review extends Component {
         this.setState({
                 showIndicator:true
             })
-        if(this.state.feedbackText=='' && this.state.useremail==''){
+        if(this.state.feedbackText == '' && this.state.useremail ==''){
             this.setState({showIndicator:false})
             this.showToastMessage('Please Input All Details')
-        } else if (this.state.feedbackText=='' && this.state.useremail!='') {
-            this.setState({showIndicator:false})
-            this.showToastMessage('Please Input Feedback Details')
-        }
-        else if(this.state.feedbackText!=''&& this.state.useremail==''){
-            this.setState({showIndicator:false})
-            this.showToastMessage('Please Input Your Email Address')
-        } 
-        else {
+        }  else {
             if(this.state.emailValidation){
                 this.setState({
                     submitApiHit:true
@@ -264,6 +248,16 @@ export default class Review extends Component {
                 this.showToastMessage('Invalid Email Address')
             } 
         }
+
+        // else if (this.state.feedbackText == '' && this.state.useremail != '') {
+        //     this.setState({showIndicator:false})
+        //     this.showToastMessage('Please Input Feedback Details')
+        // }
+        // else if(this.state.feedbackText != '' && this.state.useremail == ''){
+        //     console.log("email",this.state.useremail);
+        //     this.setState({showIndicator:false})
+        //     this.showToastMessage('Please Input Your Email Address')
+        // }
     }
 
     header()
@@ -348,6 +342,12 @@ export default class Review extends Component {
                                     <Text style={{color:'#fff',fontSize:18,fontWeight:'bold',backgroundColor:'#f2091d',textAlign:'center',padding:15,borderRadius:50}}>Cancel</Text>
                                 </View>
                             </TouchableOpacity>
+                    </View>
+                    <View>
+                    <Text>  Note: In order for Google Play to accept AAB format the App Signing by Google Play needs to be configured for your application on the Google Play Console. If you are updating an existing app that doesn't use App Signing by Google Play, please check our migration section to learn how to perform that configuration change.
+                    Note: In order for Google Play to accept AAB format the App Signing by Google Play needs to be configured for your application on the Google Play Console. If you are updating an existing app that doesn't use App Signing by Google Play, please check our migration section to learn how to perform that configuration change.
+                    Note: In order for Google Play to accept AAB format the App Signing by Google Play needs to be configured for your application on the Google Play Console. If you are updating an existing app that doesn't use App Signing by Google Play, please check our migration section to learn how to perform that configuration change.
+                    </Text>
                     </View>
                 </View>
  
